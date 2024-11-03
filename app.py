@@ -125,10 +125,11 @@ def main():
                 # Get recommendation with GPT-4
                 recommendation = get_recommendation(df, stock_symbol)
                 st.write("### Final Recommendation:")
-                placeholder = st.empty()  # Create an empty placeholder
-                for part in recommendation:
-                    logging.info(f"Recommendation part: {part}")
-                    placeholder.markdown(part)  # Stream each part of the recommendation
+                st.markdown(recommendation)
+                # placeholder = st.empty()  # Create an empty placeholder
+                # for part in recommendation:
+                #     logging.info(f"Recommendation part: {part}")
+                #     placeholder.markdown(part)  # Stream each part of the recommendation
             else:
                 st.error("Failed to retrieve stock data.")
 
