@@ -153,28 +153,28 @@ def get_recommendation(df, symbol):
     }
 
     # Combine the base explanation with the detailed explanation and prediction
-    # full_explanation = (
-    #     f"### Recommendation: {indicator_signal}\n\n"  # Clearly states the recommendation based on the indicators
-    #     f"### Summary of Analysis:\n{detailed_explanation}\n\n"  # Provides a detailed breakdown of the analysis conducted by GPT-4
-    #     f"### Key Takeaways:\n{explanation[0]}\n\n"  # Highlights the primary takeaway from the technical indicators
-    #     f"### Future Prediction:\n{prediction_details}\n\n"  # Outlines the expected future performance and suggestions for action
-    #     f"### Recommendations Based on Risk Tolerance:\n"  # Introduces the risk tolerance recommendations
-    #     f"- **Low Risk:** {risk_based_recommendations['Low Risk']}\n"
-    #     f"- **Medium Risk:** {risk_based_recommendations['Medium Risk']}\n"
-    #     f"- **High Risk:** {risk_based_recommendations['High Risk']}\n"
-    # )
-
-    # print(full_explanation)
+    full_explanation = (
+        f"### Recommendation: {indicator_signal}\n\n"  # Clearly states the recommendation based on the indicators
+        f"### Summary of Analysis:\n{detailed_explanation}\n\n"  # Provides a detailed breakdown of the analysis conducted by GPT-4
+        f"### Key Takeaways:\n{explanation[0]}\n\n"  # Highlights the primary takeaway from the technical indicators
+        f"### Future Prediction:\n{prediction_details}\n\n"  # Outlines the expected future performance and suggestions for action
+        f"### Recommendations Based on Risk Tolerance:\n"  # Introduces the risk tolerance recommendations
+        f"- **Low Risk:** {risk_based_recommendations['Low Risk']}\n"
+        f"- **Medium Risk:** {risk_based_recommendations['Medium Risk']}\n"
+        f"- **High Risk:** {risk_based_recommendations['High Risk']}\n"
+    )
 
     # Yield each section for streaming
-    yield f"### Recommendation: {indicator_signal}\n\n"  # Recommendation
-    yield f"### Summary of Analysis:\n{detailed_explanation}\n\n"  # Detailed analysis
-    yield f"### Key Takeaways:\n{explanation[0]}\n\n"  # Key takeaway
-    yield f"### Future Prediction:\n{prediction_details}\n\n"  # Future prediction
-    yield f"### Recommendations Based on Risk Tolerance:\n"  # Risk recommendations
-    yield f"- **Low Risk:** {risk_based_recommendations['Low Risk']}\n"
-    yield f"- **Medium Risk:** {risk_based_recommendations['Medium Risk']}\n"
-    yield f"- **High Risk:** {risk_based_recommendations['High Risk']}\n"
+    # yield f"### Recommendation: {indicator_signal}\n\n"  # Recommendation
+    # yield f"### Summary of Analysis:\n{detailed_explanation}\n\n"  # Detailed analysis
+    # yield f"### Key Takeaways:\n{explanation[0]}\n\n"  # Key takeaway
+    # yield f"### Future Prediction:\n{prediction_details}\n\n"  # Future prediction
+    # yield f"### Recommendations Based on Risk Tolerance:\n"  # Risk recommendations
+    # yield f"- **Low Risk:** {risk_based_recommendations['Low Risk']}\n"
+    # yield f"- **Medium Risk:** {risk_based_recommendations['Medium Risk']}\n"
+    # yield f"- **High Risk:** {risk_based_recommendations['High Risk']}\n"
+
+    return full_explanation
 
 
 def get_stock_symbol(company_name,ALPHA_VANTAGE_API_KEY):
