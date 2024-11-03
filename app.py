@@ -4,10 +4,18 @@ import requests
 import pandas as pd
 import numpy as np
 import os
+import logging
 
 from utils.stockSignal import *
 
 BASE_URL = 'https://www.alphavantage.co/query'
+
+# Configure logging
+logging.basicConfig(
+    filename='stock_analysis_tool.log',  # Log file location
+    level=logging.INFO,  # Log level
+    format='%(asctime)s - %(levelname)s - %(message)s'  # Log format
+)
 
 def get_stock_symbol(company_name, alpha_vantage_api_key):
     """Fetch the stock symbol for a given company name."""
@@ -119,7 +127,7 @@ def main():
                 st.write("### Final Recommendation:")
                 placeholder = st.empty()  # Create an empty placeholder
                 for part in recommendation:
-                    print(part)
+                    logging.info(f"Recommendation part: {part}")
                     placeholder.markdown(part)  # Stream each part of the recommendation
             else:
                 st.error("Failed to retrieve stock data.")
