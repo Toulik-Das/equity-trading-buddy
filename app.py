@@ -4,16 +4,8 @@ import requests
 import pandas as pd
 import numpy as np
 import os
-import logging
 
 from utils.stockSignal import *
-
-# Configure logging
-logging.basicConfig(
-    filename='stock_analysis_tool.log',  # Log file location
-    level=logging.INFO,  # Log level
-    format='%(asctime)s - %(levelname)s - %(message)s'  # Log format
-)
 
 BASE_URL = 'https://www.alphavantage.co/query'
 
@@ -94,9 +86,10 @@ def main():
                 """,
                 unsafe_allow_html=True
             )
+            #st.write(f"### About {company_name}:")
+            #st.markdown(f"<p style='color: white;'>{description}</p>", unsafe_allow_html=True)  # Change text color to white
         else:
             st.error(description)
-            logging.error(f"Error fetching logo and description for {company_name}: {description}")
 
     # Submit button to trigger analysis
     if st.sidebar.button("Get Recommendation"):
@@ -107,10 +100,8 @@ def main():
         stock_symbol = get_stock_symbol(company_name, alpha_vantage_api_key)
         if stock_symbol is None:
             st.error("Stock symbol not found. Please check the company name.")
-            logging.warning(f"Stock symbol not found for {company_name}.")
         else:
             st.success(f"Stock symbol for **{company_name}**: `{stock_symbol}`")
-            logging.info(f"Retrieved stock symbol for {company_name}: {stock_symbol}")
 
             # Fetch stock data
             df = get_stock_data(stock_symbol, alpha_vantage_api_key)
@@ -128,11 +119,10 @@ def main():
                 st.write("### Final Recommendation:")
                 placeholder = st.empty()  # Create an empty placeholder
                 for part in recommendation:
-                    logging.info(f"Recommendation part: {part}")  # Log each part of the recommendation
+                    print(part)
                     placeholder.markdown(part)  # Stream each part of the recommendation
             else:
                 st.error("Failed to retrieve stock data.")
-                logging.error(f"Failed to retrieve stock data for {stock_symbol}.")
 
 # Run the Streamlit app
 if __name__ == "__main__":
