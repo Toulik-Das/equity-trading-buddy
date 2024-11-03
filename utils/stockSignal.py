@@ -140,7 +140,7 @@ def get_recommendation(df, symbol):
     prediction_response = openai.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prediction_prompt}],
-        max_tokens=500
+        max_tokens=1500
     )
 
     prediction_details = prediction_response.choices[0].message.content.strip()
@@ -164,6 +164,7 @@ def get_recommendation(df, symbol):
     #     f"- **High Risk:** {risk_based_recommendations['High Risk']}\n"
     # )
 
+    # print(full_explanation)
 
     # Yield each section for streaming
     yield f"### Recommendation: {indicator_signal}\n\n"  # Recommendation
@@ -174,6 +175,7 @@ def get_recommendation(df, symbol):
     yield f"- **Low Risk:** {risk_based_recommendations['Low Risk']}\n"
     yield f"- **Medium Risk:** {risk_based_recommendations['Medium Risk']}\n"
     yield f"- **High Risk:** {risk_based_recommendations['High Risk']}\n"
+
 
 def get_stock_symbol(company_name,ALPHA_VANTAGE_API_KEY):
     """Fetch the stock symbol for a given company name."""
