@@ -119,6 +119,7 @@ def main():
                 st.write("### Final Recommendation:")
                 placeholder = st.empty()  # Create an empty placeholder
                 for part in recommendation:
+                    print(part)
                     placeholder.markdown(part)  # Stream each part of the recommendation
             else:
                 st.error("Failed to retrieve stock data.")
